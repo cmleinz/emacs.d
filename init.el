@@ -2,7 +2,11 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
 
-(setq warning-minimum-level :error)
+;; Disable auto-showing warnings buffers
+(add-to-list 'display-buffer-alist
+             '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
+               (display-buffer-no-window)
+               (allow-no-window . t)))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -59,11 +63,19 @@
 ;; Use relative line numbers
 (setq display-line-numbers-type 'relative)
 
+(use-package savehist
+  :config
+  (savehist-mode))
+
 (use-package ef-themes
   :straight t
   :config
   (setq ef-themes-to-toggle '(ef-autumn ef-melissa-light))
   (ef-themes-select 'ef-autumn))
+
+(use-package vundo
+  :straight t
+  :defer 5)
 
 (use-package nerd-icons
   :straight t
@@ -84,9 +96,18 @@
 	doom-modeline-modal t
 	doom-modeline-modal-modern-icon t))
 
-(load (expand-file-name "config/evil.el" user-emacs-directory))
+(use-package avy
+  :straight t
+  :config
+  (setq avy-all-windows t))
+
 (load (expand-file-name "config/completion.el" user-emacs-directory))
-(load (expand-file-name "config/magit.el" user-emacs-directory))
+(load (expand-file-name "config/consult.el" user-emacs-directory))
+(load (expand-file-name "config/evil.el" user-emacs-directory))
+(load (expand-file-name "config/git.el" user-emacs-directory))
 (load (expand-file-name "config/org.el" user-emacs-directory))
+(load (expand-file-name "config/vterm.el" user-emacs-directory))
+
+(load (expand-file-name "config/prog/init.el" user-emacs-directory))
 
 (load (expand-file-name "config/keys.el" user-emacs-directory))
