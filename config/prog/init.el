@@ -4,7 +4,7 @@
   (prog-mode . (lambda ()
 		 (apheleia-mode)
 		 (company-mode)
-		 (eglot-ensure)
+		 (flyspell-prog-mode)
 		 (display-line-numbers-mode)
 		 (display-fill-column-indicator-mode)
 		 (diff-hl-mode)
@@ -12,15 +12,13 @@
 		 (electric-pair-mode)
 		 (direnv-mode))))
 
-
 (use-package lsp-mode
   :straight t
   :commands lsp
   :config
   (setq lsp-diagnostics-flycheck-enable t
 	lsp-keymap-prefix "C-l"
-	lsp-idle-delay 0.5)
-  )
+	lsp-idle-delay 0.5))
 
 ;; Pre-compiled collection of tree sitter languages
 (use-package tree-sitter-langs

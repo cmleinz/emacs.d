@@ -3,6 +3,7 @@
   :hook
   (org-mode . (lambda ()
 		(visual-line-mode)
+		(flyspell-mode)
 		(display-line-numbers-mode)
 		(org-superstar-mode)
 		(org-indent-mode)

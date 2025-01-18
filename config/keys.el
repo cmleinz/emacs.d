@@ -59,6 +59,7 @@
    "e"  'vterm
    "/"  'evilnc-comment-or-uncomment-lines
    "x"  'execute-extended-command
+
    "d"  '(:ignore t :which-key "Diagnostics")
    "dd" 'flymake-show-buffer-diagnostics
    "dD" 'flymake-show-project-diagnostics
@@ -69,14 +70,14 @@
    "L"  'consult-line-multi
 
    "b"  '(:ignore t :which-key "Buffers")
-   "br" '(rename-buffer :which-key "Rename buffer")
-   "bi" '(ibuffer :which-key "Ibuffer")
-   "bR" '(revert-buffer :which-key "Revert buffer")
-   "bw" '(toggle-truncate-lines :which-key "Truncate lines")
-   "bb" '(consult-buffer :which-key "Switch buffer")
-   "bn" '(evil-next-buffer :which-key "Next buffer")
-   "bp" '(evil-prev-buffer :which-key "Previous buffer")
-   "bk" '(kill-buffer :which-key "Kill buffer")
+   "br" 'rename-buffer
+   "bi" 'ibuffer
+   "bR" 'revert-buffer
+   "bw" 'toggle-truncate-lines
+   "bb" 'consult-buffer
+   "bn" 'evil-next-buffer
+   "bp" 'evil-prev-buffer
+   "bk" 'kill-buffer
 
    "f"  '(:ignore t :which-key "Files")
    "fn" 'consult-notes
@@ -87,27 +88,25 @@
    "fD" '((lambda () (interactive) (find-file "~/Notes/day-book.org")) :which-key "Open daybook")
 
    "w"  '(:ignore t :which-key "Window")
-   "ws" '(evil-window-split :which-key "H Split")
-   "wv" '(evil-window-vsplit :which-key "V Split")
-   "wq" '(evil-window-delete :which-key "Delete window")
-   "wo" '(delete-other-windows :which-key "Delete other windows")
-   "wj" '(evil-window-down :which-key "Switch window down")
-   "wk" '(evil-window-up :which-key "Switch window up")
-   "wh" '(evil-window-left :which-key "Switch window left")
-   "wl" '(evil-window-right :which-key "Switch window right")
-   "wJ" '(evil-window-move-very-bottom :which-key "Move window down")
-   "wK" '(evil-window-move-very-top :which-key "Move window up")
-   "wH" '(evil-window-move-far-left :which-key "Move window left")
-   "wL" '(evil-window-move-far-right :which-key "Move window right")
+   "ws" 'ow-split
+   "wv" 'ow-vsplit
+   "wq" 'ow-delete
+   "wo" 'her-windows
+   "wj" 'ow-down
+   "wk" 'ow-up
+   "wh" 'ow-left
+   "wl" 'ow-right
+   "wJ" 'ow-move-very-bottom
+   "wK" 'ow-move-very-top
+   "wH" 'ow-move-far-left
+   "wL" 'evil-window-move-far-right
 
    ;; LSP Mode bindings
    "c"  '(:ignore t :which-key "Code")
    "cg" '(:ignore t :which-key "goto")
-   "cC"  '(compile :which-key "compile")
-   "cc"  '(recompile :which-key "recompile")
-   "ci" 'lsp-ui-imenu
-   "cgd" '(eglot-find-typeDefinition :which-key "Find Definition")
-   "ce" '(flycheck-list-errors :which-key "List Errors")
+   "cC"  'recompile
+   "cc"  'compile
+   "ce" 'flycheck-list-errors
    "ck" 'lsp-describe-thing-at-point
    "cK" 'lsp-rust-analyzer-open-external-docs
    "ca" 'lsp-execute-code-action
@@ -129,11 +128,11 @@
    "p!" 'project-shell-command
 
    "h"  '(:ignore t :which-key "Helper")
-   "he" '(emoji-search :which-key "Emoji Search")
-   "ht" '(consult-theme :which-key "Load theme")
-   "hk" '(describe-key :which-key "Describe key")
-   "hv" '(describe-variable :which-key "Describe variable")
-   "hf" '(describe-function :which-key "Describe function")
+   "he" 'emoji-search
+   "ht" 'consult-theme
+   "hk" 'describe-key
+   "hv" 'describe-variable
+   "hf" 'describe-function
 
    "g"  '(:ignore t :which-key "Magit")
    "gg" 'magit-status
@@ -155,13 +154,12 @@
    "!"  'shell-command
 
    "o"  '(:ignore t :which-key "Org")
-   "ot" 'org-timer-set-timer
-   "oa" '(org-agenda :which-key "org-agenda")
+   "oa" 'org-agenda
    "oc" 'org-clock-in
    "oC" 'org-clock-out
    "os" 'org-schedule
    "od" 'org-deadline
-   "oy" '(org-store-link :which-key "org-store-link")
+   "oy" 'org-store-link
    )
 
   ;; Org-mode specific bindings
@@ -169,14 +167,16 @@
    :states '(normal visual emacs)
    :keymaps '(org-mode-map)
    :prefix "SPC"
-   "of" '(org-open-at-point :which-key "org-open-at-point")
-   "oi" '(org-insert-link :which-key "org-insert-link")
+   "of" 'org-open-at-point
+   "ot" 'org-todo
+   "oi" 'org-insert-link
    "t"  'org-todo
    )
   )
 
 (use-package which-key
   :straight t
+  :defer 5
   :config
   (setq which-key-idle-delay 0.5)
   (which-key-mode))

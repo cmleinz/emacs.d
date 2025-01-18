@@ -99,6 +99,7 @@
 
 (load (expand-file-name "config/completion.el" user-emacs-directory))
 (load (expand-file-name "config/consult.el" user-emacs-directory))
+(load (expand-file-name "config/dired.el" user-emacs-directory))
 (load (expand-file-name "config/evil.el" user-emacs-directory))
 (load (expand-file-name "config/git.el" user-emacs-directory))
 (load (expand-file-name "config/org.el" user-emacs-directory))
