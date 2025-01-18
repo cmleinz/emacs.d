@@ -6,8 +6,9 @@
   :after denote
   :defer 10)
 
-(use-package consult-eglot
+(use-package consult-lsp
   :straight t
+  :after lsp-mode
   :defer 5)
 
 (use-package consult-todo

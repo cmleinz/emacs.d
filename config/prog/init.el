@@ -12,10 +12,15 @@
 		 (electric-pair-mode)
 		 (direnv-mode))))
 
-;; Built-in Eglot as LSP
-(use-package eglot
-  :hook ((eglot-managed-mode . eldoc-mode)
-	 (eglot-managed-mode . flymake-mode)))
+
+(use-package lsp-mode
+  :straight t
+  :commands lsp
+  :config
+  (setq lsp-diagnostics-flycheck-enable t
+	lsp-keymap-prefix "C-l"
+	lsp-idle-delay 0.5)
+  )
 
 ;; Pre-compiled collection of tree sitter languages
 (use-package tree-sitter-langs

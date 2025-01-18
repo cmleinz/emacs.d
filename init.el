@@ -73,10 +73,6 @@
   (setq ef-themes-to-toggle '(ef-autumn ef-melissa-light))
   (ef-themes-select 'ef-autumn))
 
-(use-package vundo
-  :straight t
-  :defer 5)
-
 (use-package nerd-icons
   :straight t
   :config
