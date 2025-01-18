@@ -1,36 +1,58 @@
 ;; Vertico for minibuffer magic!
 (use-package vertico
   :straight t
+  :hook (after-init . vertico-mode)
   :config
   (setq vertico-cycle t
-	vertico-count 10)
-  (vertico-mode))
+	vertico-count 10))
 
 (use-package orderless
   :straight t
   :config
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))
+        ;; completion-category-overrides '((file (styles partial-completion)))
 	read-buffer-completion-ignore-case t))
 
 ;; Add additional information to completions
 (use-package marginalia
   :straight t
   :hook
-  (marginalia-mode . #'nerd-icons-completion-marginalia-setup)
-  :config
-  (marginalia-mode))
+  (after-init . marginalia-mode))
 
 ;; Display nerd-icons in margin for buffers
 (use-package nerd-icons-completion
   :straight t
   :after marginalia
   :config
-  (nerd-icons-completion-mode))
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
+(use-package nerd-icons-dired
+  :straight t
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+
+(use-package company
+  :straight t
+  :config
+  (setq company-idle-delay 0.2 
+	company-minimum-prefix-length 2
+	company-tooltip-align-annotations t
+	company-tooltip-limit 5
+	company-tooltip-minimum 5
+	company-tooltip-offset-display 'lines
+	company-format-margin-function 'company-vscode-dark-icons-margin)
+  :bind
+  (:map company-active-map
+	("<tab>" . company-complete-selection)
+	("C-n" . company-select-next)
+	("C-p" . company-select-previous)
+	("M-<" . company-select-first)
+	("M->" . company-select-last))
+  )
 
 (use-package cape
-  :straight t
+  :ensure t
   :bind ("C-c f" . cape-file)
   :init
   (add-hook 'completion-at-point-functions #'cape-file)
@@ -41,31 +63,3 @@
   ;; Ensure that pcomplete does not write to the buffer
   ;; and behaves as a pure `completion-at-point-function'.
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
-
-;;;; Code Completion
-(use-package corfu
-  :straight t
-  ;; Optional customizations
-  :custom
-  (corfu-cycle t)                 ; Allows cycling through candidates
-  (corfu-auto t)                  ; Enable auto completion
-  (corfu-auto-prefix 2)
-  (corfu-auto-delay 0.1)
-  (corfu-popupinfo-delay '(0.5 . 0.2))
-  (corfu-preview-current 'insert) ; insert previewed candidate
-  (corfu-preselect 'prompt)
-  (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
-  ;; Optionally use TAB for cycling, default is `corfu-complete'.
-  :bind (:map corfu-map
-              ("M-SPC"      . corfu-insert-separator)
-              ("TAB"        . corfu-next)
-              ([tab]        . corfu-next)
-              ("S-TAB"      . corfu-previous)
-              ([backtab]    . corfu-previous)
-              ("S-<return>" . corfu-insert)
-              ("RET"        . nil))
-
-  :init
-  (global-corfu-mode)
-  (corfu-history-mode)
-  (corfu-popupinfo-mode)) ; Popup completion info

@@ -1,9 +1,9 @@
 (use-package prog-mode
-  :config
- (setq truncate-lines nil)
+  :config (setq truncate-lines nil)
   :hook
   (prog-mode . (lambda ()
 		 (apheleia-mode)
+		 (company-mode)
 		 (eglot-ensure)
 		 (display-line-numbers-mode)
 		 (display-fill-column-indicator-mode)
