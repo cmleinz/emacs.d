@@ -20,6 +20,12 @@
   :hook
   (after-init . marginalia-mode))
 
+(use-package nerd-icons
+  :straight t
+  :config
+  (setq nerd-icons-scale-factor 1.1
+	nerd-icons-font-family "ComicShannsMono Nerd Font Mono"))
+
 ;; Display nerd-icons in margin for buffers
 (use-package nerd-icons-completion
   :straight t

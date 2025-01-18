@@ -1,4 +1,5 @@
 (use-package prog-mode
+  :after (:all apheleia-mode company-mode diff-hl direnv)
   :config (setq truncate-lines nil)
   :hook
   (prog-mode . (lambda ()
@@ -19,6 +20,10 @@
   (setq lsp-diagnostics-flycheck-enable t
 	lsp-keymap-prefix "C-l"
 	lsp-idle-delay 0.5))
+
+(use-package dap-mode
+  :straight t)
+
 
 ;; Pre-compiled collection of tree sitter languages
 (use-package tree-sitter-langs

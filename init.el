@@ -67,20 +67,18 @@
   :config
   (savehist-mode))
 
+(use-package denote
+  :straight t)
+
 (use-package ef-themes
   :straight t
   :config
   (setq ef-themes-to-toggle '(ef-autumn ef-melissa-light))
   (ef-themes-select 'ef-autumn))
 
-(use-package nerd-icons
-  :straight t
-  :config
-  (setq nerd-icons-scale-factor 1.1
-	nerd-icons-font-family "ComicShannsMono Nerd Font Mono"))
-
 (use-package doom-modeline
   :straight t
+  :after nerd-icons
   :init
   (doom-modeline-mode 1)
   (display-time-mode t)
