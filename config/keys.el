@@ -19,6 +19,7 @@
    :states '(normal visual emacs)
    :keymaps '(normal prog-mode-map)
    "s" 'avy-goto-char-2
+   "y" 'consult-yank-from-kill-ring
    )
 
   (general-define-key
@@ -88,24 +89,24 @@
    "fD" '((lambda () (interactive) (find-file "~/Notes/day-book.org")) :which-key "Open daybook")
 
    "w"  '(:ignore t :which-key "Window")
-   "ws" 'ow-split
-   "wv" 'ow-vsplit
-   "wq" 'ow-delete
-   "wo" 'her-windows
-   "wj" 'ow-down
-   "wk" 'ow-up
-   "wh" 'ow-left
-   "wl" 'ow-right
-   "wJ" 'ow-move-very-bottom
-   "wK" 'ow-move-very-top
-   "wH" 'ow-move-far-left
+   "ws" 'evil-window-split
+   "wv" 'evil-window-vsplit
+   "wq" 'evil-window-delete
+   "wo" 'delete-other-windows
+   "wj" 'evil-window-down
+   "wk" 'evil-window-up
+   "wh" 'evil-window-left
+   "wl" 'evil-window-right
+   "wJ" 'evil-window-move-very-bottom
+   "wK" 'evil-window-move-very-top
+   "wH" 'evil-window-move-far-left
    "wL" 'evil-window-move-far-right
 
    ;; LSP Mode bindings
    "c"  '(:ignore t :which-key "Code")
    "cg" '(:ignore t :which-key "goto")
-   "cC"  'recompile
-   "cc"  'compile
+   "cC" 'recompile
+   "cc" 'compile
    "ce" 'flycheck-list-errors
    "ck" 'lsp-describe-thing-at-point
    "cK" 'lsp-rust-analyzer-open-external-docs

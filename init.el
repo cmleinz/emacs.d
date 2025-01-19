@@ -68,13 +68,8 @@
   (savehist-mode))
 
 (use-package denote
-  :straight t)
-
-(use-package ef-themes
   :straight t
-  :config
-  (setq ef-themes-to-toggle '(ef-autumn ef-melissa-light))
-  (ef-themes-select 'ef-autumn))
+  )
 
 (use-package doom-modeline
   :straight t
@@ -95,6 +90,7 @@
   :config
   (setq avy-all-windows t))
 
+(load (expand-file-name "config/themes.el" user-emacs-directory))
 (load (expand-file-name "config/completion.el" user-emacs-directory))
 (load (expand-file-name "config/consult.el" user-emacs-directory))
 (load (expand-file-name "config/dired.el" user-emacs-directory))

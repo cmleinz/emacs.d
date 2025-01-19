@@ -1,5 +1,4 @@
 (use-package prog-mode
-  :after (:all apheleia-mode company-mode diff-hl direnv)
   :config (setq truncate-lines nil)
   :hook
   (prog-mode . (lambda ()
@@ -19,11 +18,15 @@
   :config
   (setq lsp-diagnostics-flycheck-enable t
 	lsp-keymap-prefix "C-l"
+	lsp-headerline-breadcrumb-enable nil
 	lsp-idle-delay 0.5))
 
 (use-package dap-mode
   :straight t)
 
+(use-package tree-sitter
+  :straight t
+  :config (global-tree-sitter-mode))
 
 ;; Pre-compiled collection of tree sitter languages
 (use-package tree-sitter-langs
@@ -41,3 +44,4 @@
   (add-to-list 'apheleia-formatters '(rustfmt . ("rustfmt" "--quiet" "--emit" "stdout" "--edition" "2021"))))
 
 (load (expand-file-name "config/prog/rust.el" user-emacs-directory))
+(load (expand-file-name "config/prog/langs.el" user-emacs-directory))
