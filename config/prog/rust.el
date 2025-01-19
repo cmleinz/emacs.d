@@ -8,3 +8,6 @@
   (setq compile-command "cargo b --all-features")
   (setq lsp-rust-analyzer-cargo-watch-command "clippy")
   (setq lsp-rust-features "all"))
+
+(use-package cargo
+  :straight t)

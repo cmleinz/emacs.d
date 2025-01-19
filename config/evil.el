@@ -14,8 +14,7 @@
 
 (use-package evil-nerd-commenter
   :straight t
-  :after evil
-  :defer 5)
+  :after evil)
 
 ;; Additional evil-mode bindings
 (use-package evil-collection
@@ -28,7 +27,6 @@
 (use-package evil-mc
   :straight t
   :after evil
-  :defer 5
   :config
   (setq evil-mc-mode-line-text-cursor-color t)
   (global-evil-mc-mode 1))

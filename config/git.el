@@ -17,11 +17,16 @@
   :config
   (magit-todos-mode 1))
 
+(use-package hl-todo
+  :straight t
+  :hook (after-init . global-hl-todo-mode))
+
 (use-package diff-hl
   :straight t
   :config
   (diff-hl-dired-mode t)
   :hook
+  (prog-mode . diff-hl-mode)
   (magit-pre-refresh . diff-hl-magit-pre-refresh)
   (magit-post-refresh . diff-hl-magit-post-refresh))
 

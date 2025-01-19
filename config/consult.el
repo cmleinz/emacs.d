@@ -3,15 +3,12 @@
 
 (use-package consult-denote
   :straight t
-  :after denote
-  :defer 10)
+  :after denote)
 
 (use-package consult-lsp
   :straight t
-  :after lsp-mode
-  :defer 5)
+  :after lsp-mode)
 
 (use-package consult-todo
   :straight t
-  :after hl-todo
-  :defer 5)
+  :after hl-todo)

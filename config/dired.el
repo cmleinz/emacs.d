@@ -1,5 +1,7 @@
+;; Allows the use of external programs to open certain files
 (use-package openwith
-  :straight t)
+  :straight t
+  :after dired)
 
 (use-package dired
   :hook

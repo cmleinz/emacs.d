@@ -55,6 +55,7 @@
 	("C-p" . company-select-previous)
 	("M-<" . company-select-first)
 	("M->" . company-select-last))
+  :hook (after-init . global-company-mode)
   )
 
 (use-package cape

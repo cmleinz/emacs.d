@@ -6,20 +6,20 @@
 
 (use-package catppuccin-theme
   :straight t
-  :defer 5)
+  :defer t)
 
 (use-package cyberpunk-theme
   :straight t
-  :defer 5)
+  :defer t)
 
 (use-package doom-themes
   :straight t
-  :defer 5)
+  :defer t)
 
 (use-package gruber-darker-theme
   :straight t
-  :defer 5)
+  :defer t)
 
 (use-package gruvbox-theme
   :straight t
-  :defer 5)
+  :defer t)

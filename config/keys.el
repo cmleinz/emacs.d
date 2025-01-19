@@ -19,7 +19,6 @@
    :states '(normal visual emacs)
    :keymaps '(normal prog-mode-map)
    "s" 'avy-goto-char-2
-   "y" 'consult-yank-from-kill-ring
    )
 
   (general-define-key
@@ -57,6 +56,8 @@
    :keymaps 'override
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
+   "y" 'consult-yank-from-kill-ring
+   "j" 'evil-collection-consult-jump-list
    "e"  'vterm
    "/"  'evilnc-comment-or-uncomment-lines
    "x"  'execute-extended-command
@@ -115,6 +116,7 @@
    "cs" 'consult-imenu
    "cS" 'consult-imenu-multi
    "cd" 'consult-lsp-diagnostics
+   "ct" 'consult-todo-dir
 
    "p"  '(:ignore t :which-key "Project")
    "pe" 'multi-vterm-project
@@ -171,7 +173,6 @@
    "of" 'org-open-at-point
    "ot" 'org-todo
    "oi" 'org-insert-link
-   "t"  'org-todo
    )
   )
 

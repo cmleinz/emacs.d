@@ -2,15 +2,11 @@
   :config (setq truncate-lines nil)
   :hook
   (prog-mode . (lambda ()
-		 (apheleia-mode)
-		 (company-mode)
 		 (flyspell-prog-mode)
 		 (display-line-numbers-mode)
 		 (display-fill-column-indicator-mode)
-		 (diff-hl-mode)
 		 (electric-indent-mode)
-		 (electric-pair-mode)
-		 (direnv-mode))))
+		 (electric-pair-mode))))
 
 (use-package lsp-mode
   :straight t
@@ -23,6 +19,14 @@
 
 (use-package dap-mode
   :straight t)
+
+(use-package colorful-mode
+  :straight t 
+  :hook (prog-mode text-mode))
+
+(use-package rainbow-delimiters
+  :straight t
+  :defer t)
 
 (use-package tree-sitter
   :straight t
@@ -41,7 +45,8 @@
   :straight t
   :config
   ;; This removes the need to add rustfmt.toml files into the project root
-  (add-to-list 'apheleia-formatters '(rustfmt . ("rustfmt" "--quiet" "--emit" "stdout" "--edition" "2021"))))
+  (add-to-list 'apheleia-formatters '(rustfmt . ("rustfmt" "--quiet" "--emit" "stdout" "--edition" "2021")))
+  :hook (prog-mode . apheleia-mode))
 
 (load (expand-file-name "config/prog/rust.el" user-emacs-directory))
 (load (expand-file-name "config/prog/langs.el" user-emacs-directory))
