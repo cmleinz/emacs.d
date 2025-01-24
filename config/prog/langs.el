@@ -9,6 +9,10 @@
   :config
   (setq groovy-indent-offset 2))
 
+(use-package odin-mode
+  :straight (:type git :repo "https://git.sr.ht/~mgmarlow/odin-mode")
+  :defer 2)
+
 (use-package python-mode
   :straight t)
 
