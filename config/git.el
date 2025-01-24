@@ -35,7 +35,7 @@
   :defer 10
   :config
   (setq blamer-idle-time 0.3
-	blamer-min-offset 70)
+	blamer-view 'overlay-right)
   :custom-face
   (blamer-face ((t :foreground "#484741"
                    :background unspecified
