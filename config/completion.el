@@ -59,7 +59,7 @@
   )
 
 (use-package cape
-  :ensure t
+  :straight t
   :bind ("C-c f" . cape-file)
   :init
   (add-hook 'completion-at-point-functions #'cape-file)

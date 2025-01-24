@@ -1,6 +1,9 @@
 (use-package make-mode
   :straight nil)
 
+(use-package dockerfile-mode
+  :straight t)
+
 (use-package groovy-mode
   :straight t
   :config
