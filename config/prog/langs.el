@@ -13,6 +13,10 @@
   :straight (:type git :repo "https://git.sr.ht/~mgmarlow/odin-mode")
   :defer 2)
 
+(use-package json-ts-mode
+  :ensure nil
+  :mode ("\\.json\\'" . json-ts-mode))
+
 (use-package python-mode
   :straight t)
 
@@ -32,6 +36,10 @@
 	      '(rst-mode . ("esbonio")))
       )
   )
+
+(use-package toml-ts-mode
+  :ensure nil
+  :mode ("\\.toml\\'" . toml-ts-mode))
 
 (use-package zig-mode
   :straight t)
