@@ -32,6 +32,8 @@
 ;; Disable tool bar
 (tool-bar-mode -1)
 
+(setopt dictionary-server "dict.org")
+
 ;; Standardize autosave files to common directory
 (setq backup-directory-alist
       '((".*" . "~/.emacs.d/backups/")))

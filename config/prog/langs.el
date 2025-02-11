@@ -17,6 +17,9 @@
   :ensure nil
   :mode ("\\.json\\'" . json-ts-mode))
 
+(use-package just-mode
+  :straight t)
+
 (use-package python-mode
   :straight t)
 
