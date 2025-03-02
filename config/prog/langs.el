@@ -28,6 +28,11 @@
   :hook
   (nix-mode . (lambda () (setq-local devdocs-current-docs '("nix")))))
 
+(use-package nushell-mode
+  :straight t
+  :hook
+  (nushell-mode . (lambda () (setq-local devdocs-current-docs '("nushell")))))
+
 (use-package python-mode
   :straight t)
 
