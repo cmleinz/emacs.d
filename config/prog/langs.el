@@ -44,5 +44,9 @@
   :ensure nil
   :mode ("\\.toml\\'" . toml-ts-mode))
 
+(use-package yaml-ts-mode
+  :ensure nil
+  :mode ("\\.yml\\'" "\\.yaml\\'"))
+
 (use-package zig-mode
   :straight t)
