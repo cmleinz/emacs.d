@@ -22,6 +22,12 @@
 (use-package just-mode
   :straight t)
 
+(use-package nix-mode
+  :straight t
+  :mode "\\.nix\\'"
+  :hook
+  (nix-mode . (lambda () (setq-local devdocs-current-docs '("nix")))))
+
 (use-package python-mode
   :straight t)
 
