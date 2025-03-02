@@ -33,6 +33,8 @@
   (makefile-mode . (lambda () (setq-local devdocs-current-docs '("gnu_make")))))
 
 (use-package markdown-mode
+  :config
+  (setq indent-tabs-mode nil)
   :hook
   (markdown-mode . (lambda () (setq-local devdocs-current-docs '("markdown")))))
 
