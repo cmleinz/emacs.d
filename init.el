@@ -1,6 +1,6 @@
 ;; Specify specific custom-file location to avoid flooding init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file t)
+(load custom-file :no-error-if-file-is-missing)
 
 ;; Disable auto-showing warnings buffers
 (add-to-list 'display-buffer-alist

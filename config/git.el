@@ -9,6 +9,7 @@
   :config
   (with-eval-after-load 'magit-mode
     (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
+  (setopt magit-format-file-function #'magit-format-file-nerd-icons)
   (setq magit-show-long-lines-warning nil))
 
 (use-package magit-todos
