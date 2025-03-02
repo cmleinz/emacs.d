@@ -15,12 +15,26 @@
   :straight (:type git :repo "https://git.sr.ht/~mgmarlow/odin-mode")
   :defer 2)
 
+(use-package java-ts-mode
+  :ensure nil
+  :mode ("\\.java\\'")
+  :hook
+  (java-ts-mode . (lambda () (setq-local devdocs-current-docs '("openjdk~21")))))
+
 (use-package json-ts-mode
   :ensure nil
   :mode ("\\.json\\'" . json-ts-mode))
 
 (use-package just-mode
   :straight t)
+
+(use-package makefile-mode
+  :hook
+  (makefile-mode . (lambda () (setq-local devdocs-current-docs '("gnu_make")))))
+
+(use-package markdown-mode
+  :hook
+  (markdown-mode . (lambda () (setq-local devdocs-current-docs '("markdown")))))
 
 (use-package nix-mode
   :straight t
@@ -34,7 +48,9 @@
   (nushell-mode . (lambda () (setq-local devdocs-current-docs '("nushell")))))
 
 (use-package python-mode
-  :straight t)
+  :straight t
+  :hook
+  (python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.13")))))
 
 (use-package rst
   :hook ((rst-mode . eglot-ensure)
@@ -62,4 +78,6 @@
   :mode ("\\.yml\\'" "\\.yaml\\'"))
 
 (use-package zig-mode
-  :straight t)
+  :straight t
+  :hook
+  (zig-mode . (lambda () (setq-local devdocs-current-docs '("zig")))))
