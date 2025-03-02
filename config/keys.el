@@ -132,6 +132,7 @@
 
    "h"  '(:ignore t :which-key "Helper")
    "he" 'emoji-search
+   "hd" 'devdocs-lookup
    "ht" 'consult-theme
    "hk" 'describe-key
    "hv" 'describe-variable

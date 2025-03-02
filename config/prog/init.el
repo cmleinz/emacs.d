@@ -36,6 +36,9 @@
 (use-package tree-sitter-langs
   :straight t)
 
+(use-package devdocs
+  :straight t)
+
 (use-package direnv
   :straight t
   :config

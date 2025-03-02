@@ -2,7 +2,9 @@
   :straight nil)
 
 (use-package dockerfile-mode
-  :straight t)
+  :straight t
+  :hook
+  (dockerfile-mode . (lambda () (setq-local devdocs-current-docs '("docker")))))
 
 (use-package groovy-mode
   :straight t
