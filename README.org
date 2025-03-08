@@ -1,4 +1,4 @@
-#+property: header-args :tangle "readme.el"
+#+property: header-args :tangle "init.el"
 
 * Emacs Initialization  
 ** Custom File
@@ -532,7 +532,6 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 *** Java
 #+begin_src emacs-lisp
   (use-package java-ts-mode
-    :ensure nil
     :mode ("\\.java\\'")
     :hook
     (java-ts-mode . (lambda () (setq-local devdocs-current-docs '("openjdk~21")))))
@@ -540,7 +539,6 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 *** JSON
 #+begin_src emacs-lisp
   (use-package json-ts-mode
-    :ensure nil
     :mode ("\\.json\\'" . json-ts-mode))
 #+end_src
 *** Justfile
@@ -605,7 +603,6 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 *** Rust
 #+begin_src emacs-lisp
   (use-package rust-ts-mode
-    :ensure nil
     :mode ("\\.rs\\'" . rust-ts-mode)
     :hook ((rust-ts-mode . lsp-deferred)
   	 (rust-ts-mode . (lambda () (set-fill-column 100)))
@@ -623,13 +620,11 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 *** Toml
 #+begin_src emacs-lisp
   (use-package toml-ts-mode
-    :ensure nil
     :mode ("\\.toml\\'" "Cargo\\.lock\\'"))
 #+end_src
 *** Yaml
 #+begin_src emacs-lisp
   (use-package yaml-ts-mode
-    :ensure nil
     :mode ("\\.yml\\'" "\\.yaml\\'"))
 #+end_src
 *** Zig

@@ -1,12 +1,7 @@
 *
 
 !.gitignore
-!README.md
 !README.org
-!init.el
 !early-init.el
-!config
 !transient
 !transient/levels.el
-!config/*
-!config/prog/*
