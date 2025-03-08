@@ -864,6 +864,8 @@ Helpful popups with descriptions of what each key in the map does
      "of" 'org-open-at-point
      "ot" 'org-todo
      "oi" 'org-insert-link
+     "oh" 'consult-org-heading
+     "ob" 'org-babel-tangle
      )
     )
 
