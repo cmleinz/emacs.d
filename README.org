@@ -171,6 +171,12 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
     :straight t
     :after dired)
 #+end_src
+** Denote
+#+begin_src emacs-lisp
+  (use-package denote
+    :straight t
+    :config (setq denote-directory "/home/cleinz/Nextcloud/Documents/Notes"))
+#+end_src
 * Editing
 ** EViL
 Evil editing--accept no substitute
@@ -329,6 +335,11 @@ Consult adds a ton of useful commands that improve on existing emacs functionali
   (use-package consult-denote
     :straight t
     :after denote)
+*** Flycheck
+#+begin_src emacs-lisp
+  (use-package consult-flycheck
+    :straight t
+    :after flycheck)
 #+end_src
 *** Todo
 #+begin_src emacs-lisp
@@ -342,6 +353,11 @@ Highlights terms like NOTE and TODO
   (use-package hl-todo
     :straight t
     :hook (after-init . global-hl-todo-mode))
+#+end_src
+** Ripgrep
+#+begin_src emacs-lisp
+  (use-package rg
+    :straight t)
 #+end_src
 * Programming
 #+begin_src emacs-lisp
@@ -365,6 +381,13 @@ Highlights terms like NOTE and TODO
   	lsp-keymap-prefix "C-l"
   	lsp-headerline-breadcrumb-enable nil
   	lsp-idle-delay 0.5))
+#+end_src
+** Flycheck
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :straight t
+    :config
+    (add-hook 'after-init-hook #'global-flycheck-mode))
 #+end_src
 ** Treesitter
 #+begin_src emacs-lisp
@@ -528,6 +551,11 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 #+begin_src emacs-lisp
   (use-package odin-mode
     :straight (:type git :repo "https://git.sr.ht/~mgmarlow/odin-mode"))
+#+end_src
+*** Protobuf
+#+begin_src emacs-lisp
+  (use-package protobuf-mode
+    :straight t)
 #+end_src
 *** Java
 #+begin_src emacs-lisp
