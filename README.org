@@ -402,7 +402,6 @@ Highlights terms like NOTE and TODO
 #+end_src
 ** Colors
 #+begin_src emacs-lisp
-
   (use-package colorful-mode
     :straight t 
     :hook (prog-mode text-mode))
@@ -616,8 +615,7 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
     :hook ((rst-mode . eglot-ensure)
   	 (rst-mode . display-line-numbers-mode)
   	 (rst-mode . display-fill-column-indicator-mode)
-  	 (rst-mode . (lambda () (set-fill-column 80)))
-  	 (rst-mode . flymake-mode))
+  	 (rst-mode . (lambda () (set-fill-column 80))))
     :config
     (setq-local compilation-ask-about-save nil)
     (setq compile-command "make -k")
@@ -673,8 +671,7 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
   		(flyspell-mode)
   		(display-line-numbers-mode)
   		(org-superstar-mode)
-  		(org-indent-mode)
-  		(yas-minor-mode)))
+  		(org-indent-mode)))
     :config
     (setq org-todo-keywords
           '((sequence "TODO(t)" "PROG(p)" "PROJ(j)" "SENT(s)" "|" "DONE(d)" "CANC(c)" "PASS(a)")))
@@ -783,11 +780,15 @@ Helpful popups with descriptions of what each key in the map does
      "d"  '(:ignore t :which-key "Diagnostics")
      "dd" 'flymake-show-buffer-diagnostics
      "dD" 'flymake-show-project-diagnostics
-     "D"  'consult-flymake
+     "D"  'consult-flycheck
      "s" 'consult-lsp-file-symbols
      "S" 'consult-lsp-symbols
      "l"  'consult-line
      "L"  'consult-line-multi
+
+     "n"  '(:ignore t :which-key "Denote")
+     "nn"  'denote
+     "nc"  'consult-denote-find
 
      "b"  '(:ignore t :which-key "Buffers")
      "br" 'rename-buffer
@@ -889,11 +890,12 @@ Helpful popups with descriptions of what each key in the map does
      :states '(normal visual emacs)
      :keymaps '(org-mode-map)
      :prefix "SPC"
-     "of" 'org-open-at-point
-     "ot" 'org-todo
-     "oi" 'org-insert-link
-     "oh" 'consult-org-heading
      "ob" 'org-babel-tangle
+     "oe" 'org-export-dispatch
+     "of" 'org-open-at-point
+     "oh" 'consult-org-heading
+     "oi" 'org-insert-link
+     "ot" 'org-todo
      )
     )
 
