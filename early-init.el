@@ -2,6 +2,16 @@
 ;;  Author: Caleb Leinz
 ;;; Commentary:
 ;;; Code:
+;; Ensure org-mode is loaded
+(require 'org)
+
+;; Define the path to your README.org file
+(defvar my-org-file (expand-file-name "README.org" user-emacs-directory))
+
+;; Tangle the README.org file
+(when (file-exists-p my-org-file)
+  (org-babel-tangle-file my-org-file))
+
 (defvar file-name-handler-alist-original file-name-handler-alist)
 
 (setq gc-cons-threshold most-positive-fixnum
