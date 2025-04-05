@@ -151,6 +151,11 @@ Truly amazing themes. ef-autumn is my all-time favorite theme
     :hook
     (dired-mode . nerd-icons-dired-mode))
 #+end_src
+*** Olivetti
+#+begin_src emacs-lisp
+  (use-package olivetti
+    :straight t)
+#+end_src
 ** Dired
 Customize dired. Allow
 #+begin_src emacs-lisp
@@ -332,9 +337,10 @@ Consult adds a ton of useful commands that improve on existing emacs functionali
 #+end_src
 *** LSP
 #+begin_src emacs-lisp
-  (use-package consult-denote
+  (use-package consult-lsp
     :straight t
-    :after denote)
+    :after lsp-mode)
+#+end_src
 *** Flycheck
 #+begin_src emacs-lisp
   (use-package consult-flycheck
@@ -358,6 +364,30 @@ Highlights terms like NOTE and TODO
 #+begin_src emacs-lisp
   (use-package rg
     :straight t)
+#+end_src
+** Fzf
+#+begin_src emacs-lisp
+
+  (use-package fzf
+    :straight t
+    :config
+    (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
+          fzf/executable "fzf"
+          fzf/git-grep-args "-i --line-number %s"
+          ;; command used for `fzf-grep-*` functions
+          ;; example usage for ripgrep:
+          fzf/grep-command "rg --no-heading -nH"
+          ;; If nil, the fzf buffer will appear at the top of the window
+          fzf/position-bottom t
+          fzf/window-height 15))
+#+end_src
+** Affe
+#+begin_src emacs-lisp
+  (use-package affe
+    :straight t
+    :config
+    ;; Manual preview key for `affe-grep'
+    (consult-customize affe-grep :preview-key "M-."))
 #+end_src
 * Programming
 #+begin_src emacs-lisp
@@ -575,9 +605,10 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 #+end_src
 *** Makefile
 #+begin_src emacs-lisp
-  (use-package makefile-mode
-    :hook
-    (makefile-mode . (lambda () (setq-local devdocs-current-docs '("gnu_make")))))
+  ;; (use-package makefile-mode
+  ;;   :straight t
+  ;;   :hook
+  ;;   (makefile-mode . (lambda () (setq-local devdocs-current-docs '("gnu_make")))))
 #+end_src
 *** Markdown
 #+begin_src emacs-lisp
@@ -628,15 +659,20 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 #+end_src
 *** Rust
 #+begin_src emacs-lisp
-  (use-package rust-ts-mode
-    :mode ("\\.rs\\'" . rust-ts-mode)
-    :hook ((rust-ts-mode . lsp-deferred)
-  	 (rust-ts-mode . (lambda () (set-fill-column 100)))
-  	 (rust-ts-mode . (lambda () (setq-local devdocs-current-docs '("rust")))))
+  (use-package rust-mode
+    :straight t
+    :init
+    (setq rust-mode-treesitter-derive t)
+    :hook ((rust-mode . lsp-deferred)
+  	 (rust-mode . (lambda () (set-fill-column 100)))
+  	 (rust-mode . (lambda () (setq-local devdocs-current-docs '("rust")))))
     :config
+    (setq rust-indent-offset 4)
     (setq compile-command "cargo b --all-features")
     (setq lsp-rust-analyzer-cargo-watch-command "clippy")
-    (setq lsp-rust-features "all"))
+    (setq lsp-rust-features "all")
+    (setq rust-format-on-save nil)
+    )
 #+end_src
 **** Cargo
 #+begin_src emacs-lisp
