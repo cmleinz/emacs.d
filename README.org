@@ -561,6 +561,13 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
                      :italic t))))
 #+end_src
 ** Languages
+*** CSV
+*** Docker
+#+begin_src emacs-lisp
+  (use-package csv-mode
+    :straight t
+    :mode ("\\.csv\\'"))
+#+end_src
 *** Docker
 #+begin_src emacs-lisp
   (use-package dockerfile-mode
@@ -696,6 +703,14 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
     :hook
     (zig-mode . (lambda () (setq-local devdocs-current-docs '("zig")))))
 #+end_src
+** Custom ELisp
+#+begin_src emacs-lisp
+  (defun leinz/fzf-home ()
+    "Invoke fzf-directory with the argument \"~/\". "
+    (interactive)
+    (fzf-directory "~/"))
+#+end_src
+
 
 * Org Mode
 #+begin_src emacs-lisp
@@ -841,6 +856,7 @@ Helpful popups with descriptions of what each key in the map does
      "fd" 'dired-jump
      "fs" 'save-buffer
      "ff" 'find-file
+     "fF" 'leinz/fzf-home
      "fr" 'consult-recent-file
      "fD" '((lambda () (interactive) (find-file "~/Notes/day-book.org")) :which-key "Open daybook")
 
