@@ -729,7 +729,7 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
             ("DONE" . "#50fa7b") ("CANC" . "#a4fcba") ("PASS" . "#44475a")))
     ;; Add these files to the agenda
     (setq org-clock-sound (expand-file-name "timer.wav" user-emacs-directory)
-  	org-agenda-files '("~/Notes/day-book.org")
+  	org-agenda-files '("~/Notes/day-book.org" "~/Roam/daily/")
   	org-src-fontify-natively t)
     ;; Save Org buffers after refiling!
     (advice-add 'org-refile :after 'org-save-all-org-buffers))
@@ -936,11 +936,13 @@ Helpful popups with descriptions of what each key in the map does
      "or"  '(:ignore t :which-key "Org-Roam")
      "orf" 'org-roam-node-find
      "ori" 'org-roam-node-insert
-     "ort" 'org-roam-dailies-find-today
+     "ort" 'org-roam-dailies-goto-today
      "orT" 'org-roam-dailies-capture-today
-     "orr" 'org-roam-dailies-find-tomorrow
+     "ord" 'org-roam-dailies-goto-date
+     "orD" 'org-roam-dailies-capture-date
+     "orr" 'org-roam-dailies-goto-tomorrow
      "orR" 'org-roam-dailies-capture-tomorrow
-     "ory" 'org-roam-dailies-find-yesterday
+     "ory" 'org-roam-dailies-goto-yesterday
      "orY" 'org-roam-dailies-capture-yesterday
      )
 
