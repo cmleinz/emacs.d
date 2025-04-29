@@ -178,6 +178,13 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
     :straight t
     :after dired)
 #+end_src
+** Org-Roam
+#+begin_src emacs-lisp
+  (use-package org-roam
+    :straight t
+    :after org
+    :config (setq org-roam-directory "~/Roam"))
+#+end_src
 ** Denote
 #+begin_src emacs-lisp
   (use-package denote
@@ -926,6 +933,15 @@ Helpful popups with descriptions of what each key in the map does
      "os" 'org-schedule
      "od" 'org-deadline
      "oy" 'org-store-link
+     "or"  '(:ignore t :which-key "Org-Roam")
+     "orf" 'org-roam-node-find
+     "ori" 'org-roam-node-insert
+     "ort" 'org-roam-dailies-find-today
+     "orT" 'org-roam-dailies-capture-today
+     "orr" 'org-roam-dailies-find-tomorrow
+     "orR" 'org-roam-dailies-capture-tomorrow
+     "ory" 'org-roam-dailies-find-yesterday
+     "orY" 'org-roam-dailies-capture-yesterday
      )
 
     ;; Org-mode specific bindings
