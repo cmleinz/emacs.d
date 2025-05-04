@@ -734,6 +734,16 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
     ;; Save Org buffers after refiling!
     (advice-add 'org-refile :after 'org-save-all-org-buffers))
 #+end_src
+** LaTeX
+#+begin_src emacs-lisp
+  (use-package ox-latex
+    :config
+     (add-to-list 'org-latex-classes
+               '("dndbook"
+                "\\documentclass{dndbook}"
+                ))
+    )
+#+end_src
 ** Org Superstar
 Eye-candy for org-mode
 #+begin_src emacs-lisp
