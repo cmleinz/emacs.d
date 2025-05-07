@@ -189,8 +189,24 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
 #+begin_src emacs-lisp
   (use-package denote
     :straight t
-    :config (setq denote-directory "/home/cleinz/Nextcloud/Documents/Notes"))
+    :hook
+    (dired-mode . denote-dired-mode)
+    :config
+    (setq denote-directory (expand-file-name "~/Denote"))
+    (denote-rename-buffer-mode 1))
 #+end_src
+*** Denote Journal
+#+begin_src emacs-lisp
+  (use-package denote-journal
+    :straight t
+    :after denote
+    :config
+    (setq denote-journal-directory
+        (expand-file-name "journal" denote-directory))
+    (setq denote-journal-keyword "journal")
+    (setq denote-journal-title-format 'day-date-month-year))
+#+end_src
+
 * Editing
 ** EViL
 Evil editing--accept no substitute
@@ -836,18 +852,20 @@ Helpful popups with descriptions of what each key in the map does
      "/"  'evilnc-comment-or-uncomment-lines
      "x"  'execute-extended-command
 
-     "d"  '(:ignore t :which-key "Diagnostics")
-     "dd" 'flymake-show-buffer-diagnostics
-     "dD" 'flymake-show-project-diagnostics
-     "D"  'consult-flycheck
+     "D"  '(:ignore t :which-key "Diagnostics")
+     "Dd" 'flymake-show-buffer-diagnostics
+     "DD" 'flymake-show-project-diagnostics
+     "Dc" 'consult-flycheck
      "s" 'consult-lsp-file-symbols
      "S" 'consult-lsp-symbols
      "l"  'consult-line
      "L"  'consult-line-multi
 
-     "n"  '(:ignore t :which-key "Denote")
-     "nn"  'denote
-     "nc"  'consult-denote-find
+     "d"  '(:ignore t :which-key "Denote")
+     "dd" 'denote-open-or-create
+     "dn" 'denote
+     "dt" 'denote-journal-new-or-existing-entry
+     "dc" 'consult-denote-find
 
      "b"  '(:ignore t :which-key "Buffers")
      "br" 'rename-buffer
