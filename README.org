@@ -206,7 +206,26 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
     (setq denote-journal-keyword "journal")
     (setq denote-journal-title-format 'day-date-month-year))
 #+end_src
+*** Calendar
+#+begin_src emacs-lisp
+  (use-package calendar
+    :config
+    (defun my/denote-journal-calendar-action ()
+      "Create or open a journal entry and close the calendar."
+      (interactive)
+      (denote-journal-calendar-new-or-existing)
+      (calendar-exit))
 
+    (defun my/calendar-custom-setup ()
+      "Enable denote-journal-calendar-mode and bind RET in evil normal mode."
+      ;; Bind RET only in evil normal state
+      (denote-journal-calendar-mode 1)
+      (when (bound-and-true-p evil-mode)
+        (evil-define-key 'normal calendar-mode-map (kbd "RET") #'my/denote-journal-calendar-action)))
+
+    (add-hook 'calendar-mode-hook #'my/calendar-custom-setup)
+  )
+#+end_src
 * Editing
 ** EViL
 Evil editing--accept no substitute
@@ -866,9 +885,10 @@ Helpful popups with descriptions of what each key in the map does
 
      "d"  '(:ignore t :which-key "Denote")
      "dd" 'denote-open-or-create
+     "dc" 'calendar
      "dn" 'denote
      "dt" 'denote-journal-new-or-existing-entry
-     "dc" 'consult-denote-find
+     "df" 'consult-denote-find
 
      "b"  '(:ignore t :which-key "Buffers")
      "br" 'rename-buffer
