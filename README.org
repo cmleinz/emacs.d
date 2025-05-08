@@ -221,7 +221,12 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
       ;; Bind RET only in evil normal state
       (denote-journal-calendar-mode 1)
       (when (bound-and-true-p evil-mode)
-        (evil-define-key 'normal calendar-mode-map (kbd "RET") #'my/denote-journal-calendar-action)))
+        (evil-define-key 'normal calendar-mode-map (kbd "RET") #'my/denote-journal-calendar-action)
+        (evil-define-key 'normal calendar-mode-map (kbd "l") 'calendar-forward-day)
+        (evil-define-key 'normal calendar-mode-map (kbd "h") 'calendar-backward-day)
+        (evil-define-key 'normal calendar-mode-map (kbd "j") 'calendar-forward-week)
+        (evil-define-key 'normal calendar-mode-map (kbd "k") 'calendar-backward-week)
+        ))
 
     (add-hook 'calendar-mode-hook #'my/calendar-custom-setup)
   )
