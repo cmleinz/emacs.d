@@ -757,6 +757,9 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
      (add-to-list 'org-latex-classes
                '("dndbook"
                 "\\documentclass{dndbook}"
+  	      ("\\section{%s}" . "\\section*{%s}")
+  	      ("\\subsection{%s}" . "\\subsection*{%s}")
+  	      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                 ))
     )
 #+end_src
