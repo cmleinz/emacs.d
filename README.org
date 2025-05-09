@@ -178,13 +178,6 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
     :straight t
     :after dired)
 #+end_src
-** Org-Roam
-#+begin_src emacs-lisp
-  (use-package org-roam
-    :straight t
-    :after org
-    :config (setq org-roam-directory "~/Roam"))
-#+end_src
 ** Denote
 #+begin_src emacs-lisp
   (use-package denote
@@ -769,7 +762,7 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
             ("DONE" . "#50fa7b") ("CANC" . "#a4fcba") ("PASS" . "#44475a")))
     ;; Add these files to the agenda
     (setq org-clock-sound (expand-file-name "timer.wav" user-emacs-directory)
-  	org-agenda-files '("~/Notes/day-book.org" "~/Roam/daily/")
+  	org-agenda-files `("~/Notes/day-book.org" ,denote-journal-directory)
   	org-src-fontify-natively t)
     ;; Save Org buffers after refiling!
     (advice-add 'org-refile :after 'org-save-all-org-buffers))
@@ -990,17 +983,6 @@ Helpful popups with descriptions of what each key in the map does
      "os" 'org-schedule
      "od" 'org-deadline
      "oy" 'org-store-link
-     "or"  '(:ignore t :which-key "Org-Roam")
-     "orf" 'org-roam-node-find
-     "ori" 'org-roam-node-insert
-     "ort" 'org-roam-dailies-goto-today
-     "orT" 'org-roam-dailies-capture-today
-     "ord" 'org-roam-dailies-goto-date
-     "orD" 'org-roam-dailies-capture-date
-     "orr" 'org-roam-dailies-goto-tomorrow
-     "orR" 'org-roam-dailies-capture-tomorrow
-     "ory" 'org-roam-dailies-goto-yesterday
-     "orY" 'org-roam-dailies-capture-yesterday
      )
 
     ;; Org-mode specific bindings
@@ -1014,6 +996,7 @@ Helpful popups with descriptions of what each key in the map does
      "oh" 'consult-org-heading
      "oi" 'org-insert-link
      "ot" 'org-todo
+     "oT" 'org-set-tags-command
      )
     )
 
