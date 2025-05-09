@@ -894,6 +894,7 @@ Helpful popups with descriptions of what each key in the map does
      "dn" 'denote
      "dt" 'denote-journal-new-or-existing-entry
      "df" 'consult-denote-find
+     "dg" 'consult-denote-grep
 
      "b"  '(:ignore t :which-key "Buffers")
      "br" 'rename-buffer
