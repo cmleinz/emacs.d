@@ -188,6 +188,11 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
     (setq denote-directory (expand-file-name "~/Denote"))
     (denote-rename-buffer-mode 1))
 #+end_src
+*** Denote Org
+#+begin_src emacs-lisp
+  (use-package denote-org
+    :straight t)
+#+end_src
 *** Denote Journal
 #+begin_src emacs-lisp
   (use-package denote-journal
