@@ -162,21 +162,23 @@ Truly amazing themes. ef-autumn is my all-time favorite theme
 Customize dired. Allow
 #+begin_src emacs-lisp
   (use-package dired
-    :hook
-    (dired-mode . openwith-mode)
     :config
     (setq dired-auto-revert-buffer #'dired-directory-changed-p
   	dired-free-space nil
-  	dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"
-  	openwith-associations '(
-  				("\\.pdf\\'" "zathura" (file)))))
+  	dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"))
 #+end_src
 *** Open With
 Allows for opening certain file extensions in programs other than emacs 😱--mainly pdfs
 #+begin_src emacs-lisp
   (use-package openwith
     :straight t
-    :after dired)
+    :after dired
+    :config
+    (setq openwith-associations '(
+  				("\\.pdf\\'" "zathura" (file))))
+    :hook
+    (dired-mode . openwith-mode)
+    )
 #+end_src
 ** Denote
 #+begin_src emacs-lisp
@@ -197,16 +199,23 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
 #+begin_src emacs-lisp
   (use-package denote-journal
     :straight t
-    :after denote
+    :after (denote org)
     :config
     (setq denote-journal-directory
         (expand-file-name "journal" denote-directory))
     (setq denote-journal-keyword "journal")
-    (setq denote-journal-title-format 'day-date-month-year))
+    (setq denote-journal-title-format 'day-date-month-year)
+    (setq org-agenda-files `(,denote-journal-directory))
+    )
 #+end_src
 *** Calendar
 #+begin_src emacs-lisp
   (use-package calendar
+    :commands calendar
+    ;; For some reason :after denote-journal is not sufficient here, and results
+    ; in M-x calendar not autoloading denote-journal 
+    :init
+    (require 'denote-journal) 
     :config
     (defun my/denote-journal-calendar-action ()
       "Create or open a journal entry and close the calendar."
@@ -767,7 +776,6 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
             ("DONE" . "#50fa7b") ("CANC" . "#a4fcba") ("PASS" . "#44475a")))
     ;; Add these files to the agenda
     (setq org-clock-sound (expand-file-name "timer.wav" user-emacs-directory)
-  	org-agenda-files `("~/Notes/day-book.org" ,denote-journal-directory)
   	org-src-fontify-natively t)
     ;; Save Org buffers after refiling!
     (advice-add 'org-refile :after 'org-save-all-org-buffers))
@@ -890,6 +898,7 @@ Helpful popups with descriptions of what each key in the map does
      "dd" 'denote-open-or-create
      "dc" 'calendar
      "dn" 'denote
+     "dl" 'denote-link
      "dt" 'denote-journal-new-or-existing-entry
      "df" 'consult-denote-find
      "dg" 'consult-denote-grep
