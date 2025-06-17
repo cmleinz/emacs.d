@@ -54,7 +54,7 @@ Disable the tool bar, menu bar, scroll bar, and splash screen
   (setq-default cursor-type 'bar)
 #+end_src
 **** Disable Warning Popup
-The warnings buffer is super nice so I prefer not to limit warnings to errors, but rather just prevent it from automatically popping up
+The warnings buffer is super nice but it can be annoying that it pops up into view. I prefer to just open the buffer when I want to deal with it
 #+begin_src emacs-lisp
   (add-to-list 'display-buffer-alist
                '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
@@ -104,6 +104,12 @@ Truly amazing themes. ef-autumn is my all-time favorite theme
     :config
     (setq ef-themes-to-toggle '(ef-autumn ef-melissa-light))
     (ef-themes-select 'ef-autumn))
+#+end_src
+**** doric-themes
+Also from Prot, a more minimal set of themes
+#+begin_src emacs-lisp
+  (use-package doric-themes
+    :straight (:type git :host github :repo "protesilaos/doric-themes"))
 #+end_src
 **** catppuccin
 #+begin_src emacs-lisp
