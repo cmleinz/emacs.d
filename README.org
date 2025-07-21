@@ -701,18 +701,12 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 *** Re-Structured Text
 #+begin_src emacs-lisp
   (use-package rst
-    :hook ((rst-mode . eglot-ensure)
-  	 (rst-mode . display-line-numbers-mode)
+    :hook ((rst-mode . display-line-numbers-mode)
   	 (rst-mode . display-fill-column-indicator-mode)
   	 (rst-mode . (lambda () (set-fill-column 80))))
     :config
     (setq-local compilation-ask-about-save nil)
     (setq compile-command "make -k")
-    (with-eval-after-load
-        'eglot (add-to-list
-  	      'eglot-server-programs
-  	      '(rst-mode . ("esbonio")))
-        )
     )
 #+end_src
 *** Rust
