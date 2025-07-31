@@ -729,6 +729,9 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 **** Cargo
 #+begin_src emacs-lisp
   (use-package cargo
+    :config
+    (setq cargo-process--command-test "nextest run --all-features --color always --lib")
+    (setq cargo-process--command-build "build --all-features")
     :straight t)
 #+end_src
 *** Toml
@@ -935,6 +938,10 @@ Helpful popups with descriptions of what each key in the map does
      "wK" 'evil-window-move-very-top
      "wH" 'evil-window-move-far-left
      "wL" 'evil-window-move-far-right
+
+     "C"  '(:ignore t :which-key "Coding")
+     "Ct" 'cargo-process-test
+     "Cb" 'cargo-process-build
 
      ;; LSP Mode bindings
      "c"  '(:ignore t :which-key "Code")
