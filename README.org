@@ -652,10 +652,33 @@ Adds git-blame to the buffer. In general this is too noisy for my taste but I li
 #+end_src
 *** Java
 #+begin_src emacs-lisp
+  (use-package lsp-java
+    :straight t)
+
   (use-package java-ts-mode
     :mode ("\\.java\\'")
+    :after lsp-java
+    :config
+    (setq lombok-library-path (concat user-emacs-directory "lombok.jar"))
+    (unless (file-exists-p lombok-library-path)
+      (url-copy-file "https://projectlombok.org/downloads/lombok.jar" lombok-library-path))
+
+    (setq lsp-java-vmargs '(
+                              "-XX:+UseParallelGC"
+                              "-XX:GCTimeRatio=4"
+                              "-XX:AdaptiveSizePolicyWeight=90"
+                              "-Dsun.zip.disableMemoryMapping=true"
+                              "-Xmx4G"
+                              "-Xms100m"
+  	))
+    (push (concat "-javaagent:"
+                  (expand-file-name lombok-library-path))
+          lsp-java-vmargs)
     :hook
-    (java-ts-mode . (lambda () (setq-local devdocs-current-docs '("openjdk~21")))))
+    (
+     (java-ts-mode . (lambda () (setq-local devdocs-current-docs '("openjdk~21")))))
+     (java-ts-mode . lsp-deferred)
+    )
 #+end_src
 *** JSON
 #+begin_src emacs-lisp
