@@ -102,15 +102,14 @@ Truly amazing themes. ef-autumn is my all-time favorite theme
   (use-package ef-themes
     :straight t
     :config
+    (load-theme 'ef-autumn t)
     (setq ef-themes-to-toggle '(ef-autumn ef-melissa-light)))
 #+end_src
 **** modus-themes
 Another of prot's great themes, these are built-in
 #+begin_src emacs-lisp
   (use-package modus-themes
-    :straight t
-    :config
-    (load-theme 'modus-vivendi t))
+    :straight t)
 #+end_src
 **** doric-themes
 Also from Prot, a more minimal set of themes
