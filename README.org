@@ -199,7 +199,7 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
     :hook
     (dired-mode . denote-dired-mode)
     :config
-    (setq denote-directory (expand-file-name "~/Denote"))
+    (setq denote-directory (expand-file-name "~/Notes/denote"))
     (denote-rename-buffer-mode 1))
 #+end_src
 *** Denote Org
@@ -214,11 +214,29 @@ Allows for opening certain file extensions in programs other than emacs 😱--ma
     :after (denote org)
     :config
     (setq denote-journal-directory
-        (expand-file-name "journal" denote-directory))
+        (expand-file-name "~/Notes/journal"))
     (setq denote-journal-keyword "journal")
     (setq denote-journal-title-format 'day-date-month-year)
     (setq org-agenda-files `(,denote-journal-directory))
     )
+#+end_src
+*** Denote Silo
+#+begin_src emacs-lisp
+  (use-package denote-silo
+    :straight t
+    ;; Bind these commands to key bindings of your choice.
+    ;; :commands ( denote-silo-create-note
+    ;;             denote-silo-open-or-create
+    ;;             denote-silo-select-silo-then-command
+    ;;             denote-silo-dired
+    ;;             denote-silo-cd )
+    :config
+    ;; Add your silos to this list.  By default, it only includes the
+    ;; value of the variable `denote-directory'.
+    (setq denote-silo-directories
+          (list denote-directory
+                (expand-file-name "~/Notes/TheIronreachAccord")
+  		)))
 #+end_src
 *** Calendar
 #+begin_src emacs-lisp
@@ -934,6 +952,9 @@ Helpful popups with descriptions of what each key in the map does
      "dt" 'denote-journal-new-or-existing-entry
      "df" 'consult-denote-find
      "dg" 'consult-denote-grep
+     "dss" 'denote-silo-open-or-create
+     "dsn" 'denote-silo-create-note
+     "dsd" 'denote-silo-dired
 
      "b"  '(:ignore t :which-key "Buffers")
      "br" 'rename-buffer
