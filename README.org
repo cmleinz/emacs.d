@@ -1042,7 +1042,7 @@ Helpful popups with descriptions of what each key in the map does
      "tf" 'fill-region
 
      "r"  '(:ignore t :which-key "Configuration changes")
-     "rr" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :which-key "Reload init.el")
+     "rr" '((lambda () (interactive) (load-file (expand-file-name "init.el" user-emacs-directory))) :which-key "Reload init.el")
      "re" 'eval-buffer
 
      "!"  'shell-command
