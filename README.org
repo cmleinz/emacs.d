@@ -467,9 +467,9 @@ Highlights terms like NOTE and TODO
 * Programming
 #+begin_src emacs-lisp
   (use-package prog-mode
-    :config (setq truncate-lines nil)
     :hook
     (prog-mode . (lambda ()
+  		 (setq-local truncate-lines t)
   		 (flyspell-prog-mode)
   		 (display-line-numbers-mode)
   		 (display-fill-column-indicator-mode)
